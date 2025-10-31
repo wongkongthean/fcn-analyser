@@ -1,0 +1,21 @@
+[
+  {
+    "text": "4 months Tencent + Baba KO 98% 11% coupon p.a. GS",
+    "expected": {
+      "basket": ["Tencent", "Baba"],
+      "ko": 98,
+      "coupon": 11,
+      "maturity_months": 4
+    }
+  },
+  {
+    "text": "6 months HSBC + Hang Seng KO 95% 9.5% p.a. callable",
+    "expected": {
+      "basket": ["HSBC", "Hang Seng"],
+      "ko": 95,
+      "coupon": 9.5,
+      "maturity_months": 6,
+      "callable": true
+    }
+  }
+]

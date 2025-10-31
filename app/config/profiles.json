@@ -1,0 +1,32 @@
+{
+  "FCN_JPM": {
+    "name": "FCN (JPMorgan)",
+    "default_option": "sell_put",
+    "rules": "KO < strike < KI",
+    "required": ["strike", "ko_level", "ki_level"]
+  },
+  "FCN_GS": {
+    "name": "FCN (Goldman Sachs)",
+    "default_option": "sell_put",
+    "rules": "KO < strike < KI",
+    "required": ["strike", "ko_level", "ki_level"]
+  },
+  "TwinWin": {
+    "name": "Twin-Win Autocall",
+    "default_option": "hybrid",
+    "rules": "call_strike > put_strike",
+    "required": ["call_strike", "put_strike"]
+  },
+  "ReverseConvertible": {
+    "name": "Reverse Convertible",
+    "default_option": "sell_put",
+    "rules": "KO < strike",
+    "required": ["strike", "ko_level"]
+  },
+  "DEFAULT": {
+    "name": "Fallback",
+    "default_option": "sell_put",
+    "rules": "KO < strike < KI",
+    "required": []
+  }
+}

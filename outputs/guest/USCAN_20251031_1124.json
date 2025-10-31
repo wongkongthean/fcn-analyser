@@ -1,0 +1,34 @@
+{
+  "status": "success",
+  "parsed": {
+    "name": "Tencent_Baba_KO98",
+    "basket": [
+      "Tencent",
+      "Baba"
+    ],
+    "maturity_months": 4,
+    "ko": 98,
+    "coupon": 11.0,
+    "principal": 100.0
+  },
+  "mc": {
+    "results": [
+      {
+        "fair_value_gross": 92.87840245384318,
+        "fair_value_net": -7.121597546156815,
+        "prob_no_ko": 32.82,
+        "mean_net_payoff": -7.241285467395512,
+        "structure_name": "Tencent_Baba_KO98"
+      }
+    ],
+    "datetime": "2025-10-31T11:24:16.111637"
+  },
+  "report": {
+    "markdown": "# USCAN Structured Product Report\n\n**Generated:** 2025-10-31 11:24:16\n**Structures Analyzed:** 1\n**Average Fair Value:** $92.88\n\nThis report provides a comprehensive analysis of the structured product(s) based on Monte Carlo simulations and AI-parsed inputs.\n\n## Assumptions\n\n- **Tencent_Baba_KO98**: Tencent, Baba, 0.33 years, WORST_OF, Barriers: KO_DOWN at 98%\n\n## Results\n\n- **Tencent_Baba_KO98**: Fair Value = $92.88, Survival Probability = 32.82%\n\n## Recommendations\n\n- **Tencent_Baba_KO98**: High KO risk (67.2%). Only for risk-tolerant investors."
+  },
+  "plots": {
+    "status": "success",
+    "plots_created": 8,
+    "engine": "enhanced"
+  }
+}

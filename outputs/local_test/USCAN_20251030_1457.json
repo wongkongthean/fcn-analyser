@@ -1,0 +1,61 @@
+{
+  "status": "success",
+  "parsed": {
+    "deal_id": "tencent_baba_4months_98_11",
+    "structure_type": "sell_put",
+    "assets": [
+      {
+        "ticker": "Tencent, Baba",
+        "option": {
+          "type": "put",
+          "strike": 98,
+          "ko_level": null,
+          "ki_level": 11
+        }
+      }
+    ],
+    "global_features": {
+      "coupon": 11,
+      "maturity": "4 months",
+      "notional": null,
+      "currency": "not specified"
+    },
+    "profile": "DEFAULT",
+    "raw_input": "4 months Tencent + Baba KO 98% 11% coupon p.a. GS"
+  },
+  "mc": {
+    "results": [
+      {
+        "fair_value": 0.0,
+        "prob_positive": 0.0,
+        "mean_payoff": 0.0,
+        "structure_name": "USCAN_Deal"
+      }
+    ],
+    "datetime": "2025-10-30T14:57:27.830666"
+  },
+  "report": {
+    "markdown": "\n# USCAN Structured Product Report\n**Generated:** 2025-10-30 14:57:27\n**Structures Analyzed:** 1\n**Average Fair Value:** $0.00\nThis report provides a comprehensive analysis of the structured product(s) based on Monte Carlo simulations and AI-parsed inputs.\n\n\n## Assumptions\n- **USCAN_Deal**: Tencent, Baba, 0.33 years, WORST_OF, Barriers: None\n\n## Results\n- **USCAN_Deal**: Fair Value = $0.00, Success Probability = 0.00%\n\n## Recommendations\n- **USCAN_Deal**: Low success probability (0.00%). Consider alternative structures.",
+    "raw_sections": {
+      "summary": "\n# USCAN Structured Product Report\n**Generated:** 2025-10-30 14:57:27\n**Structures Analyzed:** 1\n**Average Fair Value:** $0.00\nThis report provides a comprehensive analysis of the structured product(s) based on Monte Carlo simulations and AI-parsed inputs.\n",
+      "assumptions": "## Assumptions\n- **USCAN_Deal**: Tencent, Baba, 0.33 years, WORST_OF, Barriers: None",
+      "results": "## Results\n- **USCAN_Deal**: Fair Value = $0.00, Success Probability = 0.00%",
+      "recommendations": [
+        "**USCAN_Deal**: Low success probability (0.00%). Consider alternative structures."
+      ]
+    },
+    "metadata": {
+      "generated_at": "2025-10-30T14:57:27.830666",
+      "engine_version": "GR31"
+    }
+  },
+  "plots": {
+    "status": "success",
+    "plots_created": 8,
+    "engine": "enhanced"
+  },
+  "confidence": 0.95,
+  "recommendations": [
+    "**USCAN_Deal**: Low success probability (0.00%). Consider alternative structures."
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "status": "success",
+  "parsed": {
+    "deal_id": "Tencent_Baba_KO98_SP_1",
+    "structure_type": "sell_put",
+    "assets": [
+      {
+        "ticker": "Tencent",
+        "option": {
+          "type": "put",
+          "strike": 100,
+          "ko_level": 98,
+          "ki_level": null
+        }
+      },
+      {
+        "ticker": "Baba",
+        "option": {
+          "type": "put",
+          "strike": 100,
+          "ko_level": 98,
+          "ki_level": null
+        }
+      }
+    ],
+    "global_features": {
+      "coupon": 11,
+      "maturity": 4,
+      "notional": null,
+      "currency": "not_specified"
+    },
+    "profile": "DEFAULT",
+    "raw_input": "{\"name\": \"Tencent_Baba_KO98\", \"basket\": [\"Tencent\", \"Baba\"], \"basket_type\": \"BASKET\", \"maturity_months\": 4, \"ko\": 98, \"coupon\": 11, \"premium\": 0, \"sell_call\": false, \"strike\": 100, \"confidence\": 0.99}"
+  },
+  "mc": {
+    "results": [
+      {
+        "fair_value": 0.0,
+        "prob_positive": 0.0,
+        "mean_payoff": 0.0,
+        "structure_name": "USCAN_Deal"
+      }
+    ],
+    "datetime": "2025-10-30T15:14:48.958204"
+  },
+  "report": {
+    "markdown": "\n# USCAN Structured Product Report\n**Generated:** 2025-10-30 15:14:48\n**Structures Analyzed:** 1\n**Average Fair Value:** $0.00\nThis report provides a comprehensive analysis of the structured product(s) based on Monte Carlo simulations and AI-parsed inputs.\n\n\n## Assumptions\n- **USCAN_Deal**: Tencent, Baba, 0.33 years, WORST_OF, Barriers: None\n\n## Results\n- **USCAN_Deal**: Fair Value = $0.00, Success Probability = 0.00%\n\n## Recommendations\n- **USCAN_Deal**: Low success probability (0.00%). Consider alternative structures.",
+    "raw_sections": {
+      "summary": "\n# USCAN Structured Product Report\n**Generated:** 2025-10-30 15:14:48\n**Structures Analyzed:** 1\n**Average Fair Value:** $0.00\nThis report provides a comprehensive analysis of the structured product(s) based on Monte Carlo simulations and AI-parsed inputs.\n",
+      "assumptions": "## Assumptions\n- **USCAN_Deal**: Tencent, Baba, 0.33 years, WORST_OF, Barriers: None",
+      "results": "## Results\n- **USCAN_Deal**: Fair Value = $0.00, Success Probability = 0.00%",
+      "recommendations": [
+        "**USCAN_Deal**: Low success probability (0.00%). Consider alternative structures."
+      ]
+    },
+    "metadata": {
+      "generated_at": "2025-10-30T15:14:48.958204",
+      "engine_version": "GR31"
+    }
+  },
+  "plots": {
+    "status": "success",
+    "plots_created": 8,
+    "engine": "enhanced"
+  },
+  "confidence": 0.95,
+  "recommendations": [
+    "**USCAN_Deal**: Low success probability (0.00%). Consider alternative structures."
+  ]
+}
