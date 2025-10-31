@@ -6,7 +6,7 @@ from datetime import datetime
 import numpy as np
 import re
 
-# === parse_deal (INLINE) ===
+# === parse_deal ===
 def parse_deal(text: str):
     try:
         text = text.lower().replace(" p.a.", "").replace(" coupon", "").replace(" ko ", " ko")
@@ -29,32 +29,44 @@ def parse_deal(text: str):
         st.error(f"Parse error: {e}")
         return None
 
-# === Structure & mc_value (INLINE) ===
+# === FIXED mc_value ===
 def mc_value(struct, n_paths=10000, n_steps=1):
     np.random.seed(42)
     T = struct["maturity"]
-    S0 = struct["initial_prices"]
+    S0 = np.array(struct["initial_prices"])
     n = len(S0)
     dt = T / n_steps
     drift = (0.05 - 0.5 * 0.2**2) * dt
     vol = 0.2 * np.sqrt(dt)
-    paths = np.exp(np.cumsum(drift + vol * np.random.randn(n_paths, n_steps, n), axis=1)) * np.array(S0)
-    paths = np.concatenate([np.array(S0)[None, :], paths], axis=1)
+    
+    increments = drift + vol * np.random.randn(n_paths, n_steps, n)
+    log_paths = np.cumsum(increments, axis=1)
+    paths = np.exp(log_paths) * S0
+    
+    S0_3d = S0.reshape(1, 1, n)
+    paths = np.concatenate([S0_3d, paths], axis=1)
+    
     worst = np.min(paths, axis=2)
     ko_level = 0.98
     ko_hit = np.any(worst <= ko_level, axis=1)
     survival = ~ko_hit
+    
     coupon = struct["other_props"][1]["coupon"]
-    payoff = np.where(survival, 100 + coupon * T * 100, 
-                      np.where(worst[:, -1] < ko_level, worst[:, -1] * 100, 100))
+    final_worst = worst[:, -1]
+    payoff = np.where(
+        survival,
+        100 + coupon * T * 100,
+        np.where(final_worst < ko_level, final_worst * 100, 100)
+    )
     fv = np.mean(payoff) * np.exp(-0.05 * T)
     prob_no_ko = np.mean(survival)
+    
     return {
         "fair_value_gross": round(fv, 2),
         "prob_no_ko": round(prob_no_ko * 100, 2)
     }
 
-# === ReportEngine (INLINE) ===
+# === ReportEngine ===
 class ReportEngine:
     def generate_report(self, mc_results, gr21_input):
         mc = mc_results["results"][0]
@@ -81,7 +93,7 @@ class ReportEngine:
 """
         return {"markdown": markdown.strip()}
 
-# === run_analysis (ALL IN ONE) ===
+# === run_analysis ===
 def run_analysis(text: str, user_id: str = "guest"):
     try:
         st.write("**1/4** Parsing...")
@@ -111,7 +123,6 @@ def run_analysis(text: str, user_id: str = "guest"):
         engine = ReportEngine()
         report = engine.generate_report(mc_results, gr21_input)
 
-        # Save
         os.makedirs(f"outputs/{user_id}", exist_ok=True)
         base = f"outputs/{user_id}/USCAN_{datetime.now().strftime('%Y%m%d_%H%M')}"
         with open(f"{base}.json", "w") as f:
