@@ -1,10 +1,17 @@
 ﻿import streamlit as st
-from app.orchestrator import run_analysis
+import traceback
+
+try:
+    from app.orchestrator import run_analysis
+    print("IMPORT SUCCESS: run_analysis loaded")
+except Exception as e:
+    print("IMPORT ERROR:", e)
+    traceback.print_exc()
 
 st.title("USCAN — Structured Product Pricer")
 st.write("Paste deal text below (e.g. `4 months Tencent + Baba KO 98% 11% coupon p.a. GS`)")
 
-text = st.text_area("Deal Description", height=100, value="4 months Tencent + Baba KO 98% 11% coupon p.a. GS")
+text = st.text_area("Deal Description", height=100)
 if st.button("Analyze"):
     with st.spinner("Running Monte Carlo..."):
         result = run_analysis(text)
