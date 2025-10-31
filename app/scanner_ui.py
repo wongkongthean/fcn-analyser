@@ -29,7 +29,7 @@ def parse_deal(text: str):
         st.error(f"Parse error: {e}")
         return None
 
-# === FIXED mc_value ===
+# === FINAL mc_value ===
 def mc_value(struct, n_paths=10000, n_steps=1):
     np.random.seed(42)
     T = struct["maturity"]
@@ -38,19 +38,21 @@ def mc_value(struct, n_paths=10000, n_steps=1):
     dt = T / n_steps
     drift = (0.05 - 0.5 * 0.2**2) * dt
     vol = 0.2 * np.sqrt(dt)
-    
+
     increments = drift + vol * np.random.randn(n_paths, n_steps, n)
     log_paths = np.cumsum(increments, axis=1)
     paths = np.exp(log_paths) * S0
-    
-    S0_3d = S0.reshape(1, 1, n)
-    paths = np.concatenate([S0_3d, paths], axis=1)
-    
+
+    S0_broadcast = S0.reshape(1, 1, n)
+    S0_broadcast = np.tile(S0_broadcast, (n_paths, 1, 1))
+
+    paths = np.concatenate([S0_broadcast, paths], axis=1)
+
     worst = np.min(paths, axis=2)
     ko_level = 0.98
     ko_hit = np.any(worst <= ko_level, axis=1)
     survival = ~ko_hit
-    
+
     coupon = struct["other_props"][1]["coupon"]
     final_worst = worst[:, -1]
     payoff = np.where(
@@ -60,7 +62,7 @@ def mc_value(struct, n_paths=10000, n_steps=1):
     )
     fv = np.mean(payoff) * np.exp(-0.05 * T)
     prob_no_ko = np.mean(survival)
-    
+
     return {
         "fair_value_gross": round(fv, 2),
         "prob_no_ko": round(prob_no_ko * 100, 2)
